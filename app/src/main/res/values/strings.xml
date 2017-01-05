@@ -1,6 +1,6 @@
 <resources>
     <!-- Name for the application [CHAR LIMIT=12] -->
-    <string name="app_name">Pets</string>
+    <string name="app_name">Pet Shelter</string>
 
     <!-- Label for overflow menu option that inserts fake pet data into the app [CHAR LIMIT=20] -->
     <string name="action_insert_dummy_data">Insert Dummy Data</string>
@@ -56,7 +56,7 @@
     <string name="empty_view_title_text">It\'s a bit lonely here...</string>
 
     <!-- Subtitle text for the empty view that prompts the user to add a pet [CHAR LIMIT=50] -->
-    <string name="empty_view_subtitle_text">Get started by adding a pet</string>
+    <string name="empty_view_subtitle_text">Get started by adding a pet...</string>
     <string name="editor_update_pet_failed">Pet Not Updated</string>
     <string name="editor_update_pet_successful">Pet Updated</string>
     <string name="unsaved_changes_dialog_msg">Discard your changes and quit editing?</string>
@@ -69,5 +69,7 @@
     <string name="editor_delete_pet_successful">The Pet Deleted Successfully</string>
     <string name="unknown_breed">Unknown breed</string>
     <string name="delete_All_dialog_msg">Do you want to delete all Pets?</string>
+    <string name="medical_report">Medical Report</string>
+    <string name="animal_type">Type</string>
 </resources>
 

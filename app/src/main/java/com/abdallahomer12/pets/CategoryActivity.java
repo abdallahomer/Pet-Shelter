@@ -24,10 +24,10 @@ public class CategoryActivity extends AppCompatActivity implements LoaderManager
     // private PetDbHelper mDbHelper;
     PetCursorAdapter adapter;
     private static final int EXISTING_PET_LOADER = 1;
-    private ListView l =null ;
+    private ListView l = null;
     private View emptyView = null;
 
-    private void showAllDeleteConfirmationDialog(){
+    private void showAllDeleteConfirmationDialog() {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setMessage(R.string.delete_All_dialog_msg);
         builder.setPositiveButton(R.string.delete, new DialogInterface.OnClickListener() {

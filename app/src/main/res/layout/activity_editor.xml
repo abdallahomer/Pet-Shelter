@@ -43,6 +43,25 @@
         </LinearLayout>
     </LinearLayout>
 
+    <LinearLayout
+        android:id="@+id/animal_type_id"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <TextView
+            android:text="@string/animal_type"
+            style="@style/CategoryStyle"
+            />
+
+        <EditText
+            android:inputType="textCapWords"
+            style="@style/EditorFieldStyle"
+            android:id="@+id/type_id"
+            android:layout_marginRight="35dp"
+            android:layout_marginLeft="100dp"/>
+
+    </LinearLayout>
+
     <!-- Gender category -->
     <LinearLayout
         android:id="@+id/container_gender"
@@ -82,7 +101,8 @@
         <!-- Label -->
         <TextView
             android:text="@string/category_measurement"
-            style="@style/CategoryStyle" />
+            style="@style/CategoryStyle"
+            android:id="@+id/textView" />
 
         <!-- Input fields -->
         <RelativeLayout
@@ -92,17 +112,48 @@
             android:paddingLeft="4dp">
 
             <!-- Weight field -->
-            <EditText
-                android:id="@+id/edit_pet_weight"
-                android:hint="@string/hint_pet_weight"
-                android:inputType="number"
-                style="@style/EditorFieldStyle" />
 
             <!-- Units for weight (kg) -->
             <TextView
                 android:id="@+id/label_weight_units"
                 android:text="@string/unit_pet_weight"
                 style="@style/EditorUnitsStyle"/>
+
+            <EditText
+                android:id="@+id/edit_pet_weight"
+                android:hint="@string/hint_pet_weight"
+                android:inputType="number"
+                style="@style/EditorFieldStyle"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true" />
         </RelativeLayout>
     </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/medical_id"
+        android:orientation="horizontal"
+        android:weightSum="1">
+        <TextView
+            android:id="@+id/med_edit_text"
+            android:text="@string/medical_report"
+            style="@style/CategoryStyle"
+
+             />
+
+        <EditText
+            android:id="@+id/edit_pet_report"
+            android:textAppearance="?android:textAppearanceMedium"
+            android:layout_marginLeft="33dp"
+            android:layout_marginRight="95dp"
+            android:layout_height="104dp"
+            android:layout_marginTop="5dp"
+            android:layout_width="match_parent"
+            android:inputType="textMultiLine"
+ />
+
+    </LinearLayout>
+
 </LinearLayout>

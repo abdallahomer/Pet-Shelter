@@ -36,6 +36,8 @@ public class EditorActivity extends AppCompatActivity implements LoaderManager.L
     private EditText mBreedEditText;
 
     private EditText mWeightEditText;
+    private EditText mTypeEditText;
+    private EditText mMedicalEditText;
 
     Spinner mGenderSpinner;
 
@@ -120,6 +122,8 @@ public class EditorActivity extends AppCompatActivity implements LoaderManager.L
         mBreedEditText = (EditText) findViewById(R.id.edit_pet_breed);
         mWeightEditText = (EditText) findViewById(R.id.edit_pet_weight);
         mGenderSpinner = (Spinner) findViewById(R.id.spinner_gender);
+        mTypeEditText = (EditText) findViewById(R.id.type_id);
+        mMedicalEditText = (EditText) findViewById(R.id.edit_pet_report);
 
 
 
@@ -127,6 +131,8 @@ public class EditorActivity extends AppCompatActivity implements LoaderManager.L
         mBreedEditText.setOnTouchListener(mTouchListener);
         mWeightEditText.setOnTouchListener(mTouchListener);
         mGenderSpinner.setOnTouchListener(mTouchListener);
+        mTypeEditText.setOnTouchListener(mTouchListener);
+        mMedicalEditText.setOnTouchListener(mTouchListener);
         //mDbHelper = new PetDbHelper(this);
 
 
@@ -247,9 +253,11 @@ public class EditorActivity extends AppCompatActivity implements LoaderManager.L
         String petName = mNameEditText.getText().toString().trim();
         String petBreed = mBreedEditText.getText().toString().trim();
         String petWeight = (mWeightEditText.getText().toString().trim());
+        String petType = (mTypeEditText.getText().toString().trim());
+        String petMedical = (mMedicalEditText.getText().toString().trim());
         if (currentUri == null &&
                 TextUtils.isEmpty(petName) && TextUtils.isEmpty(petBreed) &&
-                TextUtils.isEmpty((petWeight)) && mGender == PetContract.PetEntry.GENDER_UNKNOWN) {
+                TextUtils.isEmpty((petWeight)) && mGender == PetContract.PetEntry.GENDER_UNKNOWN && TextUtils.isEmpty(petType) && TextUtils.isEmpty(petMedical)) {
             return;
         }
         int weight = 0;
@@ -260,8 +268,10 @@ public class EditorActivity extends AppCompatActivity implements LoaderManager.L
         ContentValues values = new ContentValues();
         values.put(PetContract.PetEntry.COLUMN_PET_NAME, petName);
         values.put(PetContract.PetEntry.COLUMN_PET_BREED, petBreed);
+        values.put(PetContract.PetEntry.COLUMN_PET_TYPE, petType);
         values.put(PetContract.PetEntry.COLUMN_PET_GENDER, mGender);
         values.put(PetContract.PetEntry.COLUMN_PET_WEIGHT, weight);
+        values.put(PetContract.PetEntry.COLUMN_PET_MEDICAL_REPORT, petMedical);
         if (currentUri == null) {
             i = getContentResolver().insert(PetContract.PetEntry.CONTENT_URI, values);
             if (i != null) {
@@ -291,8 +301,11 @@ public class EditorActivity extends AppCompatActivity implements LoaderManager.L
         String projection[] = {PetContract.PetEntry._ID,
                 PetContract.PetEntry.COLUMN_PET_NAME,
                 PetContract.PetEntry.COLUMN_PET_BREED,
+                PetContract.PetEntry.COLUMN_PET_TYPE,
                 PetContract.PetEntry.COLUMN_PET_GENDER,
-                PetContract.PetEntry.COLUMN_PET_WEIGHT};
+                PetContract.PetEntry.COLUMN_PET_WEIGHT,
+                PetContract.PetEntry.COLUMN_PET_MEDICAL_REPORT};
+
         if (currentUri != null) {
             cl = new CursorLoader(this
                     , currentUri
@@ -309,17 +322,24 @@ public class EditorActivity extends AppCompatActivity implements LoaderManager.L
         if (cursor.moveToFirst()) {
             int nameColumnIndex = cursor.getColumnIndex(PetContract.PetEntry.COLUMN_PET_NAME);
             int breedColumnIndex = cursor.getColumnIndex(PetContract.PetEntry.COLUMN_PET_BREED);
+            int typeColumnIndex = cursor.getColumnIndex(PetContract.PetEntry.COLUMN_PET_TYPE);
             int genderColumnIndex = cursor.getColumnIndex(PetContract.PetEntry.COLUMN_PET_GENDER);
             int weightColumnIndex = cursor.getColumnIndex(PetContract.PetEntry.COLUMN_PET_WEIGHT);
+            int medicalColumnIndex = cursor.getColumnIndex(PetContract.PetEntry.COLUMN_PET_MEDICAL_REPORT);
+
 
             String name = cursor.getString(nameColumnIndex);
             String breed = cursor.getString(breedColumnIndex);
+            String type = cursor.getString(typeColumnIndex);
             int gender = cursor.getInt(genderColumnIndex);
             int weight = cursor.getInt(weightColumnIndex);
+            String medical = cursor.getString(medicalColumnIndex);
 
             mNameEditText.setText(name);
             mBreedEditText.setText(breed);
             mWeightEditText.setText(Integer.toString(weight));
+            mTypeEditText.setText(type);
+            mMedicalEditText.setText(medical);
 
             switch (gender) {
                 case PetContract.PetEntry.GENDER_MALE:

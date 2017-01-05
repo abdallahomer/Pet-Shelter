@@ -23,7 +23,6 @@ public class PetCursorAdapter extends CursorAdapter {
     public View newView(Context context, Cursor cursor, ViewGroup viewGroup) {
         return LayoutInflater.from(context).inflate(R.layout.list_item,viewGroup,false);
     }
-
     @Override
     public void bindView(View view, Context context, Cursor cursor) {
 
